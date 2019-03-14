@@ -1,26 +1,41 @@
 from graphics import*
 import random
 
-def bulleye(ra,ran, pos,pos2, rad, color):#bullseyes function
+def bulleye(ra,ran, pos,pos2,spac, rad, red,green,blue):#bullseyes function
     for ra in range(ran):
-        circle(pos,pos2, ra, rad, color)
-        color += 25
+        randnum = random.randint(1,3)
+        circle(pos,pos2,spac, ra, rad, red,green,blue)
+        if randnum == 1:
+            red += 20
+        elif randnum == 2:
+            green += 20
+        elif randnum == 3:
+            blue += 20
+        
 
-def circle(pos, pos2, ran, rad, color):#circle function
-    c = Circle(Point(pos, pos2), rad-(20*(ran+1)))
-    c.setFill(color_rgb(color,0,color))
+def circle(pos, pos2,spac, ran, rad, red,green,blue):#circle function
+    c = Circle(Point(pos, pos2), rad-(spac*(ran+1)))
+    c.setFill(color_rgb(red,green,blue))
     c.draw(wind)
-    
+check = False    
 #window size
 winX = 800
 #color for red and black
-col = 0
+
 swap = {0: 244, 244:0}
 #create window
 wind = GraphWin("checker", winX, winX)
 wind.setCoords(0, 0, 800, 800)
-i = 0
-print("how many bullseyes")
-hm = int(input())
+while check == False:
+    try:
+        hm = int(input("how many bullseyes"))
+        if 0 < hm :
+            check = True
+        else:
+            print("please input a postive whole number")
+    except ValueError:
+        print("please input a number")
+    
+    
 for j in range(hm):
-    bulleye(i,9, random.randint(0,800),random.randint(0,800), 200, col)
+    bulleye(0,10, random.randint(0,800),random.randint(0,800),random.randint(10,30), random.randint(150,300), 0,0,0)
