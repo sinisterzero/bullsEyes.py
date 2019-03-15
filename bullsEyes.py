@@ -4,14 +4,22 @@ import random
 def bulleye(ra,ran, pos,pos2, rad, red,green,blue):#bullseyes function
     for ra in range(ran):
         randnum = random.randint(1,3)
-        circle(pos,pos2,rad/10, ra, rad, red,green,blue)
-        #random rgb 
+        circle(pos,pos2,rad/ran, ra, rad, red,green,blue)
+        #random rgb
         if randnum == 1:
             red += 25
         elif randnum == 2:
             green += 25
         elif randnum == 3:
             blue += 25
+        #rgb dont go over 255
+        if red > 255:
+            red -= 255
+        if blue > 255:
+            blue -= 255
+        if green > 255:
+            green -= 255
+        
         
 
 def circle(pos, pos2,spac, ran, rad, red,green,blue):#circle function
@@ -21,7 +29,7 @@ def circle(pos, pos2,spac, ran, rad, red,green,blue):#circle function
 check = False    
 #window size
 winX = 800
-radi = random.randint(0,800)
+random.randint(0,800)
 #create window
 wind = GraphWin("checker", winX, winX)
 wind.setCoords(0, 0, 800, 800)
@@ -38,4 +46,4 @@ while check == False:
     
 #spawn bullseyes    
 for j in range(hm):
-    bulleye(0,10, random.randint(0,800),radi, random.randint(150,300), 0,0,0)
+    bulleye(0,random.randint(10,25), random.randint(0,800),random.randint(0,800),random.randint(0,600), 0,0,0)
